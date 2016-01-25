@@ -35,7 +35,12 @@ class ViewController: UIViewController, downloadSpeedDelegate, UIPickerViewDataS
 	}
 	
 	func didUpdateSpeed(sender: AnyObject, withValue: Float) {
-		speedLabel.text = String(stringInterpolationSegment: Int(withValue)) + " kB/s"
+		if (Int(withValue) < 1000) {
+			speedLabel.text = String(stringInterpolationSegment: Int(withValue)) + " kB/s"
+		} else if (Int(withValue) >= 1000) {
+			speedLabel.text = String(stringInterpolationSegment: Float(withValue) / 1000.0) + " mB/s"
+		}
+		
 	}
 	
 	//MARK: - UIPickerView
